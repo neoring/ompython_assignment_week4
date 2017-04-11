@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				{% if yelp_results %}
+					<h2>For your search in {{ location }}</h2>
+					<br>
+					<h5>How about:</h5>
+					<div>
+					{% for business in yelp_results['businesses'] %}
+						<h1>{{ business['name'] }} </h1>
+						<h3>{{ business['display_phone'] }}</h3>
+						<h3>{{ business['location']['address1'] }}, {{ business['location']['city'] }}</h3>
+
+						<br>Or...
+						<br>
+					{% endfor %}
+					</div>
+					<div>
+						<h2><a href="{{ url_for('index') }}">Search again.</a></h2>
+					</div>
+				{% else %}
+					<h1>Hello! Enter your location to search for restaurants nearby.</h1>
+					<form action="/" class="form-inline">
+						<div class="form-group">
+							<input type="text" name="location" placeholder="Enter your city here" class="form-control">
+						</div>
+						<input type="submit" value="Submit" class="btn btn-primary">
+					</form>
+				{% endif %}
+				<a href="{{ url_for('about') }}">About this project</a>
+			</div>
+		</div>
+	</body>
+</html>
