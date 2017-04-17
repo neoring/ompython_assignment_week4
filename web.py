@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-import weather
 import os
 import yelp_api_clean
 app = Flask(__name__)
